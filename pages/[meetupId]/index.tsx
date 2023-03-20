@@ -47,7 +47,10 @@ const getStaticPaths = async (context)=>{
 
     return({
         paths:[
-            
+            {params:{meetupId:"6418ef79c9444745a0f81a8f"}},
+            {params:{meetupId:"6418efe3c9444745a0f81a91"}},
+            {params:{meetupId:"6418f01bc9444745a0f81a93"}},
+            {params:{meetupId:"6418f046c9444745a0f81a95"}}
         ],
         fallback:false
     })

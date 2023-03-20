@@ -18,7 +18,7 @@ export default MeetUps;
 
 const  getStaticProps =  async ()=>{
 
-    await mongoose.connect("mongodb://127.0.0.1:27017/meetupDB");
+    await mongoose.connect("mongodb+srv://db-user:password0@cluster0.9sys7.mongodb.net/?retryWrites=true&w=majority");
 
     const Meetup = mongoose.model("Meetup", new mongoose.Schema({
         title:{

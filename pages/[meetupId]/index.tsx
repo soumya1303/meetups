@@ -22,7 +22,7 @@ export default Meetup;
 
 const getStaticPaths = async (context)=>{
 
-    const client = await MongoClient.connect("mongodb://127.0.0.1:27017/");    
+    const client = await MongoClient.connect("mongodb+srv://db-user:password0@cluster0.9sys7.mongodb.net/meetupDB?retryWrites=true&w=majority");    
     
     const db = client.db("meetupDB");
     
@@ -47,16 +47,7 @@ const getStaticPaths = async (context)=>{
 
     return({
         paths:[
-            {params:{meetupId:"64178a7541f5514e196e2970"}
-            },
-            {params:{meetupId:"64178c1441f5514e196e2972"}
-            },
-            {params:{meetupId:"64178d3d1a0f87da43708b36"}
-            },
-            {params:{meetupId:"64178f3a0e77764d01737109"}
-            },
-            {params:{meetupId:"64179ec81fa514d132dfb22c"}
-            }
+            
         ],
         fallback:false
     })
@@ -74,7 +65,7 @@ const getStaticProps = async (context)=>{
     });
     */
 
-    const client = await MongoClient.connect("mongodb://127.0.0.1:27017/");    
+    const client = await MongoClient.connect("mongodb+srv://db-user:password0@cluster0.9sys7.mongodb.net/?retryWrites=true&w=majority");    
     
     const meetupItemId = new ObjectId(context.params.meetupId);
     

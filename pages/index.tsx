@@ -27,6 +27,8 @@ const  getStaticProps =  async ()=>{
 
     const meetUps = await collection.find({}, {}).toArray();
 
+    client.close();
+
     return {
         props:{
             meetups:JSON.stringify( meetUps)

@@ -45,6 +45,8 @@ const getStaticPaths = async (context)=>{
     //     })
     // })
 
+    client.close();
+    
     return({
         paths:[
             {params:{meetupId:"6418ef79c9444745a0f81a8f"}},

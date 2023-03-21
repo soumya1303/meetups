@@ -1,9 +1,10 @@
 import React from "react";
 import MeetUpList from "../components/meetups/MeetupList";
-import meetUpMaster from "../components/meetupdata/meetups";
+//import meetUpMaster from "../components/meetupdata/meetups";
 import Layout from "../components/layout/Layout";
-import mongoose from "mongoose";
+//import mongoose from "mongoose";
 import Head from "next/head";
+import {MongoClient, ObjectId} from "mongodb";
 
 const MeetUps = (props)=>{
     return (<Layout>
@@ -18,36 +19,17 @@ export default MeetUps;
 
 const  getStaticProps =  async ()=>{
 
-    await mongoose.connect("mongodb+srv://db-user:password0@cluster0.9sys7.mongodb.net/?retryWrites=true&w=majority");
-
-    const Meetup = mongoose.model("Meetup", new mongoose.Schema({
-        title:{
-            type:String,
-            required:true
-        },
-        image:{
-            type:String,
-            required:true
-        },
-        address:{
-            type:String,
-            required:true
-        },
-        description:{
-            type:String,
-            required:true
-        }
-    }));
-
-    const meetUps = await Meetup.find({}, {}); 
+    const client = await MongoClient.connect("mongodb+srv://db-user:password0@cluster0.9sys7.mongodb.net/meetupDB?retryWrites=true&w=majority");    
     
-    mongoose.connection.close();
+    const db = client.db("meetupDB");
+    
+    const collection = db.collection("meetups");
 
-    //console.log(meetUps);
+    const meetUps = await collection.find({}, {}).toArray();
 
     return {
         props:{
-            meetups:JSON.stringify(meetUps)
+            meetups:JSON.stringify( meetUps)
         },
         revalidate:3600
     }
